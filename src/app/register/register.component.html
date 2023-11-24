@@ -1,0 +1,93 @@
+
+<div class="wrap">
+    <div class="grid">
+        <div class="col-12">
+            <div class="text-center p-3 border-round-sm surface-50 font-bold shadow-1">
+                <form [formGroup]="registerMoney">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <div style="">
+                                Enter value:
+                            </div>
+                        </td>
+                        <td>
+                            <div style="margin-bottom: 10px; font-weight: normal;">
+                                <input pInputText required formControlName="valueRegister" (blur)="checkInputCurrency($event)" placeholder="R$ 0,00" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  />&nbsp;<br>
+                                <small *ngIf="registerMoney.controls['valueRegister'].invalid" id="username-help">Enter value</small>
+                            </div>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td>
+                            <div style="">
+                                Justification:
+                            </div>
+                        </td>
+                        <td >
+                            <div style="margin-bottom: 10px; font-weight: normal;">
+                            <input pInputText required formControlName="justification" (blur)="checkInputJustification($event)" />&nbsp;<br>
+                            <small *ngIf="justificationTxt" id="justification-txt">Enter justification text</small>
+                        </div>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td>
+                            <div style="">
+                                Direction:
+                            </div>
+                        </td>
+                        <td >
+                            <div class="flex align-items-center" style="padding: 10px;">
+                                <p-radioButton name="directionValue" formControlName="directionValue" value="ENTER" inputId="directionValue"></p-radioButton>
+                                <label for="directionValue" class="ml-2">CREDIT</label>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
+                                <p-radioButton name="directionValue" value="EXIT" formControlName="directionValue" inputId="directionValueEXIT"></p-radioButton>
+                                <label for="directionValueEXIT" class="ml-2">EXIT</label>
+                            </div>
+                        </td>
+                    </tr>
+    
+                    <tr>
+                        <td></td>
+                        <td>
+                            <p-button label="Register" type="submit" [disabled]="!registerMoney.valid" (click)="addValue()"></p-button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="grid">
+        <div class="col-12">
+            <div class="text-center p-3 border-round-sm surface-50 shadow-1" style="font-size: 14px;">
+                <table>
+                    <tbody>
+                    <tr *ngFor="let item of activityList">
+                    <td>{{item.justtificationTxt}} &nbsp;</td>
+                    <td>{{item.dateRegister}} &nbsp;</td>
+                    <td>                        
+                        <div *ngIf="item.direction == 'EXIT' ">
+                            <span style="font-weight: bold; color: #fa052e;">{{item.currencyValue | currency : 'BRL'}}</span>
+                        </div>
+                        <div *ngIf="item.direction == 'ENTER' ">
+                            <span style="font-weight: bold; color: #01523d;">{{item.currencyValue | currency : 'BRL'}}</span>
+                        </div>
+                    </td>
+                    </tr>
+                    </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+    
+
+   
+</div> <!--WRAP ### -->

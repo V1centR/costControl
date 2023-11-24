@@ -1,0 +1,11 @@
+.wrap {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 10px;
+  }
+@media only screen and (max-width: 500px) {
+    .wrap {
+      margin: 0%;
+      min-width: 400px;
+    }
+  }
