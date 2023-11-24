@@ -17,6 +17,7 @@ import { NgxCurrencyDirective } from 'ngx-currency';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { registerLocaleData, CommonModule  } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
+import { SafeComponent } from './safe/safe.component';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -25,7 +26,8 @@ registerLocaleData(ptBr);
     HomeComponent,
     HeaderTopComponent,
     FooterBottomComponent,
-    RegisterComponent
+    RegisterComponent,
+    SafeComponent
   ],
   imports: [
     CommonModule,

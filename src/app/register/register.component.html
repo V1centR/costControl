@@ -2,9 +2,9 @@
 <div class="wrap">
     <div class="grid">
         <div class="col-12">
-            <div class="text-center p-3 border-round-sm surface-50 font-bold shadow-1">
+            <div class="text-center p-3 border-round-sm surface-50 font-bold shadow-1" >
                 <form [formGroup]="registerMoney">
-                <table style="width: 100%;">
+                <table>
                     <tr>
                         <td>
                             <div style="">
@@ -13,7 +13,7 @@
                         </td>
                         <td>
                             <div style="margin-bottom: 10px; font-weight: normal;">
-                                <input pInputText required formControlName="valueRegister" (blur)="checkInputCurrency($event)" placeholder="R$ 0,00" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  />&nbsp;<br>
+                                <input pInputText style="width: 100%;" required formControlName="valueRegister" (blur)="checkInputCurrency($event)" placeholder="R$ 0,00" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  />
                                 <small *ngIf="registerMoney.controls['valueRegister'].invalid" id="username-help">Enter value</small>
                             </div>
                         </td>
@@ -27,7 +27,7 @@
                         </td>
                         <td >
                             <div style="margin-bottom: 10px; font-weight: normal;">
-                            <input pInputText required formControlName="justification" (blur)="checkInputJustification($event)" />&nbsp;<br>
+                            <input pInputText style="width: 100%;" required formControlName="justification" (blur)="checkInputJustification($event)" />&nbsp;<br>
                             <small *ngIf="justificationTxt" id="justification-txt">Enter justification text</small>
                         </div>
                         </td>
