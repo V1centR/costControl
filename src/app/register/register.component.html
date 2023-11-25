@@ -1,4 +1,3 @@
-
 <div class="wrap">
     <div class="grid">
         <div class="col-12">
@@ -13,8 +12,7 @@
                         </td>
                         <td>
                             <div style="margin-bottom: 10px; font-weight: normal;">
-                                <input pInputText style="width: 100%;" required formControlName="valueRegister" (blur)="checkInputCurrency($event)" placeholder="R$ 0,00" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  />
-                                <small *ngIf="registerMoney.controls['valueRegister'].invalid" id="username-help">Enter value</small>
+                                <input pInputText style="width: 100%;" required formControlName="valueRegister" (blur)="checkInputCurrency($event)" placeholder="R$ 0,00" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  />                               
                             </div>
                         </td>
                     </tr>
