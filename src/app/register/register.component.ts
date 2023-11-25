@@ -32,9 +32,6 @@ export class RegisterComponent {
 
     );
 
-    console.log(this.activityList);
-
-
     this.registerMoney = this.fb.group({
       valueRegister: new FormControl('-',Validators.required),
       justification: new FormControl('',Validators.required),

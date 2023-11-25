@@ -6,6 +6,6 @@
 @media only screen and (max-width: 500px) {
     .wrap {
       margin: 0%;
-      min-width: 400px;
+      min-width: 360px;
     }
   }

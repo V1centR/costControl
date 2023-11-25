@@ -1,0 +1,30 @@
+<div class="wrap">
+    <div class="grid">
+        <div class="col-12">
+            <p-messages [(value)]="alertMessage" [enableService]="false" [closable]="false"></p-messages>
+            <div class="text-center p-3 border-round-sm surface-50 font-bold shadow-1" >
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Value:</td>
+                            <p-inputNumber [(ngModel)]="valueSafe" inputId="locale-user" locale="pt-BR" prefix="R$ " placeholder="R$ 0,00" [minFractionDigits]="2"></p-inputNumber>
+                            <td>
+                               </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>
+                                <div style="margin-top: 10px;">
+                                <p-button label="Register" type="submit"></p-button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    </table>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
