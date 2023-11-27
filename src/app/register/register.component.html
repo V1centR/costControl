@@ -6,7 +6,7 @@
                 <table>
                     <tr>
                         <td>
-                            <div style="">
+                            <div>
                                 Enter value:
                             </div>
                         </td>
@@ -19,7 +19,7 @@
     
                     <tr>
                         <td>
-                            <div style="">
+                            <div>
                                 Justification:
                             </div>
                         </td>
@@ -33,7 +33,7 @@
     
                     <tr>
                         <td>
-                            <div style="">
+                            <div>
                                 Direction:
                             </div>
                         </td>
@@ -69,14 +69,14 @@
                 <table>
                     <tbody>
                     <tr *ngFor="let item of activityList">
-                    <td>{{item.justtificationTxt}} &nbsp;</td>
-                    <td>{{item.dateRegister}} &nbsp;</td>
+                    <td>{{item.justtificationtxt}} &nbsp;</td>
+                    <td>{{item.dateregister}} &nbsp;</td>
                     <td>                        
                         <div *ngIf="item.direction == 'EXIT' ">
-                            <span style="font-weight: bold; color: #fa052e;">{{item.currencyValue | currency : 'BRL'}}</span>
+                            <span style="font-weight: bold; color: #fa052e;">{{item.currencyvalue | currency : 'BRL'}}</span>
                         </div>
                         <div *ngIf="item.direction == 'ENTER' ">
-                            <span style="font-weight: bold; color: #01523d;">{{item.currencyValue | currency : 'BRL'}}</span>
+                            <span style="font-weight: bold; color: #01523d;">{{item.currencyvalue | currency : 'BRL'}}</span>
                         </div>
                     </td>
                     </tr>
@@ -85,7 +85,4 @@
             </div>
         </div>
     </div>
-    
-
-   
 </div> <!--WRAP ### -->
