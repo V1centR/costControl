@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MovimentListModel } from '../model/moviment-list';
 import { EDirection } from '../enum/edirection';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ControlServiceService } from '../services/control-service.service';
 
 @Component({
   selector: 'app-register',
@@ -14,23 +15,18 @@ export class RegisterComponent {
   justification:string | undefined;
   valuesList:string | undefined;
 
-  activityList: MovimentListModel[] = [];
+  activityList: any[] = [];
   directionValue:EDirection;
   registerMoney: FormGroup;
   valueRegister:any;
-  //item = new MovimentListModel;
 
   justificationTxt:boolean = false;
 
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder, private service: ControlServiceService){}
 
   ngOnInit() {
 
-    this.activityList.push(
-      {id:1,justtificationTxt:"Salário",dateRegister:"2023-11-01 18:28:18",currencyValue: 18000 ,direction: EDirection.ENTER},
-      {id:2,justtificationTxt:"Aluguel",dateRegister:"2023-11-10 12:28:33",currencyValue: 1200 ,direction: EDirection.EXIT}
-
-    );
+    this.getAllRegisters();
 
     this.registerMoney = this.fb.group({
       valueRegister: new FormControl('-',Validators.required),
@@ -48,14 +44,26 @@ export class RegisterComponent {
     let item = new MovimentListModel;
     let searchID = this.activityList.length - 1;
 
-    item.id = searchID[0] + 1;
-    item.justtificationTxt = this.registerMoney.value.justification;
-    item.dateRegister = this.formatDate(new Date());
-    item.currencyValue = this.registerMoney.value.valueRegister;
+    item.id = null;
+    item.justtificationtxt = this.registerMoney.value.justification;
+    item.dateregister = this.formatDate(new Date());
+    item.currencyvalue = this.registerMoney.value.valueRegister;
     item.direction = directionValueEnum;
 
-    this.activityList.push(item);
+    this.service.postCost(item).subscribe(msg => {
+      this.activityList = [];
+      this.getAllRegisters();
+    });
     this.registerMoney.reset();
+  }
+
+  getAllRegisters(){
+
+    this.service.getAll().subscribe(data => {
+      data.forEach(item => {
+        this.activityList.push(item);
+      });
+    });
   }
 
   checkInputCurrency(event:any){
@@ -63,10 +71,7 @@ export class RegisterComponent {
     let valueInput = event.target.value;
 
     if(valueInput =='' || valueInput == undefined || valueInput == "R$ 0,00"){
-      console.log("EMPTY VALUE");
       this.registerMoney.controls["valueRegister"].setErrors({'incorrect': true});
-    } else {
-      console.log(valueInput);
     }
   }
 
@@ -75,11 +80,9 @@ export class RegisterComponent {
     let valueInput = event.target.value;
 
     if(valueInput =='' || valueInput == undefined){
-      console.log("EMPTY VALUE");
       this.registerMoney.controls["justification"].setErrors({'incorrect': true});
       this.justificationTxt = true;
     } else {
-      console.log(valueInput);
       this.justificationTxt = false;
     }
   }

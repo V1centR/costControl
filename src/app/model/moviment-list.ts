@@ -1,9 +1,9 @@
 export class MovimentListModel {
 
     id:number;
-    justtificationTxt:string;
-    dateRegister:string;
-    currencyValue:number;
+    justtificationtxt:string;
+    dateregister:string;
+    currencyvalue:number;
     direction:string;
 
 }

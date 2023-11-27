@@ -20,6 +20,7 @@ import { registerLocaleData, CommonModule  } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import { SafeComponent } from './safe/safe.component';
 import { MessagesModule } from 'primeng/messages';
+import { HttpClientModule } from '@angular/common/http';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -45,7 +46,8 @@ registerLocaleData(ptBr);
     RadioButtonModule,
     ReactiveFormsModule,
     InputNumberModule,
-    MessagesModule
+    MessagesModule,
+    HttpClientModule
     
   ],
   providers: [
