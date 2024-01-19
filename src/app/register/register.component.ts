@@ -3,6 +3,7 @@ import { MovimentListModel } from '../model/moviment-list';
 import { EDirection } from '../enum/edirection';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ControlServiceService } from '../services/control-service.service';
+import { Daterange } from '../model/daterange';
 
 @Component({
   selector: 'app-register',
@@ -34,7 +35,11 @@ export class RegisterComponent {
       directionValue: new FormControl('',Validators.required),
     });
 
+    console.log("DATE SETUP");
+    console.log(localStorage.getItem('selectedDate'));
+
   }
+  
 
   addValue(){
 
@@ -59,7 +64,11 @@ export class RegisterComponent {
 
   getAllRegisters(){
 
-    this.service.getAll().subscribe(data => {
+    let dateRange = new Daterange;
+    dateRange.startDate = this.formatDate(new Date()).substring(0,10);
+    dateRange.consolidated = "false";
+
+    this.service.getAllByDate(dateRange).subscribe(data => {
       data.forEach(item => {
         this.activityList.push(item);
       });
@@ -87,9 +96,13 @@ export class RegisterComponent {
     }
   }
 
+  //TODO Move to ultils module
   padTo2Digits(num: number) {
     return num.toString().padStart(2, '0');
   }
+
+
+//TODO Move to ultils module
   formatDate(date: Date) {
     return (
       [

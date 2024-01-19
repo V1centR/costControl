@@ -3,25 +3,44 @@
     <div class="grid">
         <div class="col-12">
             <div class="text-center p-1 border-round-sm h-full surface-50 shadow-1">
-                <p-calendar class="max-w-full" [(ngModel)]="date" [inline]="true" [showWeek]="true"></p-calendar>
+
+
+                <p-calendar [(ngModel)]="selectedDate" [inline]="true" dateFormat="yy-mm-dd" (onSelect)="onDateSelect($event)"></p-calendar>
+               
+
+<!--
+                <p-calendar class="max-w-full" [(ngModel)]="date"  dateFormat="yy-mm-dd" dataType="string" (click)="getDate('SELECT')" [inline]="true" [showWeek]="true"></p-calendar>
+            -->
             </div>
         </div>
 
-        <div class="col-6" style="font-size: 14px;">
+        <div class="col-12">
+            <p-messages [(value)]="alertMessage" [enableService]="true" [closable]="false"></p-messages>
+
+        </div>
+        
+        <div class="col-6" style="font-size: 14px;" *ngIf="showElements">
             <div class="text-left border-round-sm surface-50 font-bold shadow-1" style="padding: 12px;">
 
-                <div style="">
-                    Safe: R$ 17.899,75
-                </div>
-
-                <div style="margin-top: 10px;">
-                    Preview: R$ 3.500,00
-                </div>
+                <table>
+                    <tr>
+                        <td>Limit:&nbsp;</td>
+                        <td>R$ {{consolidatedObj.dailyLimit}}</td>
+                    </tr>
+                    <tr>
+                        <td>EXIT:&nbsp;</td>
+                        <td> <span style="color: #ff0000;">R$ {{consolidatedObj.exit}}</span></td>
+                    </tr>
+                    <tr>
+                        <td>ENTER:&nbsp;</td>
+                        <td>R$ {{consolidatedObj.enter}}</td>
+                    </tr>
+                </table>
 
             </div>
         </div>
 
-        <div class="col-6">
+        <div class="col-6" *ngIf="showElements">
             <div class="text-center p-4 border-round-sm surface-50 font-bold shadow-1">
                 <div style="">
                     NOV costs:<br> <span style="font-weight: bold; color: #fa052e;">R$ 2547,89</span>
